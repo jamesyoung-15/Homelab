@@ -1,0 +1,29 @@
+# Python distribution / packaging
+.Python
+build/
+dist/
+downloads/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+.installed.cfg
+MANIFEST
+
+# Python Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# Python environments
+.env
+.envrc
+.venv
+env/
+venv/
+
+# Ansible
+.ansible/
