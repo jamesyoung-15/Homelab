@@ -25,5 +25,8 @@ __pycache__/
 env/
 venv/
 
+# mkdocs/Zensical
+site/
+
 # Ansible
 .ansible/
