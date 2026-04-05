@@ -20,6 +20,7 @@
             diffutils
             jq
             pre-commit
+            wrangler
             yamllint
             yq
             zensical
