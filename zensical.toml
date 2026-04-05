@@ -1,11 +1,23 @@
 [project]
-site_name = "Homelab Docs"
+site_name = "James' Homelab"
 site_description = "Documentation for my homelab setup"
 site_author = "James Young"
+site_url = "https://jyyhomelab.com"
 docs_dir = "docs"
 
 [project.theme]
 variant = "modern"
+features = [
+    "navigation.path",
+    "navigation.top",
+    "navigation.footer",
+    # "navigation.sections",
+    # "navigation.tabs",
+]
+favicon = "assets/images/website-logo.png"
+
+[project.theme.icon]
+logo = "lucide/server"
 
 # dark mode settings
 [[project.theme.palette]]
@@ -13,8 +25,19 @@ media = "(prefers-color-scheme: dark)"
 scheme = "slate"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
+accent = "indigo"
 
+# light mode settings
 [[project.theme.palette]] 
 scheme = "default"
 toggle.icon = "lucide/sun"
 toggle.name = "Switch to dark mode"
+accent = "indigo"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/jamesyoung-15/homelab"
+
+[[project.extra.social]]
+icon = "fontawesome/solid/blog"
+link = "https://blog.jyyoung.com"
