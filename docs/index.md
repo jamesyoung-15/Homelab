@@ -1,3 +1,7 @@
-# Homelab Docs
+---
+title: Home
+---
 
-My personal docs for guides on setting up my homelab, random notes, troubleshooting, etc.
+# My Homelab
+
+This contains a collection of my docs, guides, references, and so on for my homelab. I use my homelab for self-hosting services (eg. Jellyfin), development/experimentation, and learning.

@@ -2,6 +2,14 @@
 
 The following defines my naming convention for the hostname structure used across all infrastructure. This includes homelab, cloud providers, virtual machines, and containers.
 
+## Design Principles
+
+- Consistent structure across homelab and cloud.
+- Hybrid friendly.
+- Migration safe for virtual machines.
+- Predictable for automation and scripting.
+- Simple enough to maintain long term.
+
 ## Hostname Format
 
 All systems follow this format:
@@ -13,10 +21,10 @@ All systems follow this format:
 Example:
 
 ```bash
-hml-home-prd-phy-hv01
+hml-home-prd-phy-nas01
 ```
 
-Every hostname should contain all five fields for consistency.
+Try to have every hostname contain all five fields for consistency.
 
 ---
 
@@ -165,11 +173,3 @@ htz-hel1-prd-vm-edge01
 5. Do not encode the Proxmox host into VM or container names.
 6. Keep role names short and consistent.
 7. Only increment numbers within the same provider, site, environment, and role.
-
-## Design Principles
-
-- Consistent structure across homelab and cloud.
-- Hybrid friendly.
-- Migration safe for virtual machines.
-- Predictable for automation and scripting.
-- Simple enough to maintain long term.
