@@ -65,6 +65,7 @@ Internal self-hosted apps and backend services. No public exposure directly.
 - Home Assistant, Vaultwarden, Jellyfin, Nextcloud, Immich, Paperless, etc.
 - Accessed externally via DMZ nginx only, never directly
 - Can reach: Internet, IoT (70), Isolated (80) for Home Assistant polling/access
+  - **Notes**: Unifi controller has access to Unifi devices on Management (10)
 
 ### VLAN 60 — Lab
 
