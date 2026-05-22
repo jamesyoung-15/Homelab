@@ -19,6 +19,7 @@ Various online forums, video channels, blogs, and other social media resources t
 
 ### Youtube Channels
 
+- [Home Network Guy](https://www.youtube.com/@homenetworkguy) - Lots of helpful step-by-step guides w/ OpnSense
 - [MRP](https://www.youtube.com/@MRPtech) - Lots of helpful videos related to Proxmox
 - [Apalrd's Adventures](https://www.youtube.com/@apalrdsadventures) - Lots of helpful videos related to Proxmox
 - [Lawrence Systems](https://www.youtube.com/@LawrenceSystems) - Lots of helpful videos related to OPNSense and networking
