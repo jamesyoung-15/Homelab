@@ -33,6 +33,7 @@ Servers, hypervisors, and compute resources.
 
 - Proxmox nodes, hypervisors, bare metal compute
 - Accessed from: Trusted (30) or WireGuard (100)
+- Can reach: Internet, Services (50), other Infrastructure nodes (20)
 
 ### VLAN 30 — Trusted
 
@@ -43,11 +44,10 @@ Primary working VLAN. Daily-driven devices goes here with lots of access
 
 ### VLAN 35 — Shared
 
-Devices with limited access to specific internal services.
+Personal secondary devices and trusted guests with limited access.
 
-- Friend/family devices, trusted guest devices, personal devices that gets less access
-- Can reach: Services (50), Lab (60), IoT (70)
-    - **Note:** Not full access, only has access certain services/lab/IoT stuff
+- Personal secondary devices, friend/family devices, trusted guest devices
+- Can reach: Internal reverse proxy (Services 50) on ports 80/443, Lab (60), IoT (70)
 - Cannot reach: Management (10), Infrastructure (20), DMZ (40), Isolated (80), Guest (90)
 
 ### VLAN 40 — DMZ
@@ -106,24 +106,6 @@ Remote access VPN. Grants same access as Trusted when away from home.
 - Phone/laptop when connecting remotely via WireGuard
 - Inherits Trusted (30) access rules
 - Note: the cloud VPS tunnel is separate infrastructure, not this VLAN
-
----
-
-## Inter-VLAN Access Summary
-
-| Source            | Can Reach                                   |
-|-------------------|---------------------------------------------|
-| Management 10     | Internet only                               |
-| Infrastructure 20 | Internet + cluster communication within 20  |
-| Trusted 30        | Everything except Guest (90)                |
-| Shared 35         | Services (50), IoT (70)                     |
-| DMZ 40            | Internet + Services (50) on specific ports  |
-| Services 50       | Internet + IoT (70) + Isolated (80)         |
-| Lab 60            | Internet only                               |
-| IoT 70            | Internet only                               |
-| Isolated 80       | Nothing                                     |
-| Guest 90          | Internet only                               |
-| WireGuard 100     | Same as Trusted (30)                        |
 
 ---
 
