@@ -34,5 +34,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy site --project-name=jyyhomelab-landingpage --branch=main
+          command: pages deploy site --project-name=jyyhomelab --branch=main
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
