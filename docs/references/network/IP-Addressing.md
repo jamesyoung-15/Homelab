@@ -15,11 +15,11 @@ All VLANs follow a consistent /24 subnet pattern:
 Network devices only.
 
 ```txt
-10.0.10.1 — OPNsense interface
-10.0.10.10-49 — Switches, network gear
-10.0.10.50-60 — Wireless APs
-10.0.10.61-99 — Reserved
-10.0.10.100-254 — DHCP pool
+10.15.10.1 — OPNsense interface
+10.15.10.10-49 — Switches, network gear
+10.15.10.50-60 — Wireless APs
+10.15.10.61-99 — Reserved for other infrastructure
+10.15.10.100-254 — DHCP pool
 ```
 
 ## VLAN 20 (Infrastructure)
@@ -27,10 +27,10 @@ Network devices only.
 Proxmox nodes and compute resources.
 
 ```txt
-10.0.20.1 — OPNsense interface
-10.0.20.10-50 — Proxmox nodes (static, required for cluster)
-10.0.20.51-99 — Reserved for future infrastructure
-10.0.20.100-254 — DHCP pool
+10.15.20.1 — OPNsense interface
+10.15.20.10-60 — Proxmox nodes, NAS, bare-metal server
+10.15.20.61-99 — Reserved for future infrastructure
+10.15.20.100-254 — DHCP pool
 ```
 
 ## VLAN 30 (Trusted)
@@ -38,8 +38,9 @@ Proxmox nodes and compute resources.
 Personal devices.
 
 ```txt
-10.0.30.1 — OPNsense interface
-10.0.30.100-254 — DHCP pool
+10.15.30.1 — OPNsense interface
+10.15.30.10-99 — Reserved for future static IPs
+10.15.30.100-254 — DHCP pool
 ```
 
 ## VLAN 35 (Shared)
@@ -47,8 +48,9 @@ Personal devices.
 Friends/family and personal auxiliary devices.
 
 ```txt
-10.0.35.1 — OPNsense interface
-10.0.35.100-254 — DHCP pool
+10.15.35.1 — OPNsense interface
+10.15.35.10-99 — Reserved for future static IPs
+10.15.35.100-254 — DHCP pool
 ```
 
 ## VLAN 40 (DMZ)
@@ -56,9 +58,9 @@ Friends/family and personal auxiliary devices.
 Internet-facing services.
 
 ```txt
-10.0.40.1 — OPNsense interface
-10.0.40.10-99 — Static IPs for DMZ services (reverse proxy, etc.)
-10.0.40.100-254 — DHCP pool
+10.15.40.1 — OPNsense interface
+10.15.40.10-99 — Static IPs for DMZ services (reverse proxy, etc.)
+10.15.40.100-254 — DHCP pool
 ```
 
 ## VLAN 50 (Services)
@@ -66,9 +68,9 @@ Internet-facing services.
 Internal services and applications.
 
 ```txt
-10.0.50.1 — OPNsense interface
-10.0.50.10-99 — Static IPs for services (Home Assistant, Jellyfin, etc.)
-10.0.50.100-254 — DHCP pool
+10.15.50.1 — OPNsense interface
+10.15.50.10-99 — Static IPs for services (Home Assistant, Jellyfin, etc.)
+10.15.50.100-254 — DHCP pool
 ```
 
 ## VLAN 60 (Lab)
@@ -76,9 +78,9 @@ Internal services and applications.
 Experimental workloads.
 
 ```txt
-10.0.60.1 — OPNsense interface
-10.0.60.10-99 — Lab infrastructure (test VMs, containers)
-10.0.60.100-254 — DHCP pool
+10.15.60.1 — OPNsense interface
+10.15.60.10-99 — Lab infrastructure (test VMs, containers)
+10.15.60.100-254 — DHCP pool
 ```
 
 ## VLAN 70 (IoT)
@@ -86,9 +88,9 @@ Experimental workloads.
 Smart home devices.
 
 ```txt
-10.0.70.1 — OPNsense interface
-10.0.70.10-99 — Static IPs for critical IoT (Zigbee hub, Z-Wave hub, etc.)
-10.0.70.100-254 — DHCP pool (bulbs, sensors, switches)
+10.15.70.1 — OPNsense interface
+10.15.70.10-99 — Static IPs for critical IoT (Zigbee hub, Z-Wave hub, etc.)
+10.15.70.100-254 — DHCP pool (bulbs, sensors, switches)
 ```
 
 ## VLAN 80 (Isolated)
@@ -96,8 +98,9 @@ Smart home devices.
 Untrusted IoT devices.
 
 ```txt
-10.0.80.1 — OPNsense interface
-10.0.80.100-254 — DHCP pool (IP cameras, etc.)
+10.15.80.1 — OPNsense interface
+10.15.80.10-99 — Reserved for future static IPs
+10.15.80.100-254 — DHCP pool (IP cameras, etc.)
 ```
 
 ## VLAN 90 (Guest)
@@ -105,8 +108,8 @@ Untrusted IoT devices.
 Guest and untrusted devices.
 
 ```txt
-10.0.90.1 — OPNsense interface
-10.0.90.100-254 — DHCP pool
+10.15.90.1 — OPNsense interface
+10.15.90.100-254 — DHCP pool
 ```
 
 ## VLAN 100 (WireGuard)
@@ -114,12 +117,14 @@ Guest and untrusted devices.
 Remote VPN access.
 
 ```txt
-10.0.100.1 — OPNsense interface / WireGuard server
-10.0.100.2-254 — WireGuard client pool
+10.15.100.1 — OPNsense interface / WireGuard server
+10.15.100.2-254 — WireGuard client pool
 ```
 
 ## General Rules
 
+- **Infrastructure/Network gear** (switches, APs, Proxmox nodes): Configure static IPs on the device OS. Optionally add Unbound DNS Host Overrides for hostname resolution
+- **Services/Containers/VMs**: Use DHCP with dnsmasq Host reservations (hardware addresses) for both IP stability and automatic DNS registration
 - Always use static IPs (10-99 range) for infrastructure devices that require reliable addressing
 - Proxmox nodes should have static IPs for cluster communication
 - DHCP pools (100-254) for client devices only
