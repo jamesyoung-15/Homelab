@@ -32,6 +32,23 @@
             yq
             zensical
           ];
+          shellHook = ''
+            repo_root="$(git rev-parse --show-toplevel)"
+            tofu-lab() {
+              "$repo_root/scripts/tofu-env.sh" lab "$@"
+            }
+            tofu-prod() {
+              "$repo_root/scripts/tofu-env.sh" prod "$@"
+            }
+
+            ansible-lab() {
+              "$repo_root/scripts/ansible-env.sh" lab "$@"
+            }
+
+            ansible-prod() {
+              "$repo_root/scripts/ansible-env.sh" prod "$@"
+            }
+        '';
         };
       }
     );
