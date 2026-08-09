@@ -15,11 +15,18 @@
       {
         devShells.default = mkShell {
           packages = [
+            age
             ansible
             ansible-lint
             diffutils
+            git
+            gitleaks
+            opentofu
             jq
             pre-commit
+            sops
+            tflint
+            tofu-ls
             wrangler
             yamllint
             yq
